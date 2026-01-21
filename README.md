@@ -4,7 +4,7 @@ Check out the [deployed application here.](https://citlali-trigos-raczkowski-mig
 
 ## Introduction
 
-This project was created to try to understand and inform others about the deaths of migrants, focused at borders. It relies on the [Missing Migrants Project](https://missingmigrants.iom.int/) dataset, which includes data from 2014 to 2022. This data includes incidents across the world, each entry representing the death of 1 or more persons, with details about the location, cause of death, time, and more, if it can be identified.
+This project was created to try to understand and inform others about the deaths of migrants, focused at borders. It relies on the [Missing Migrants Project](https://missingmigrants.iom.int/) dataset, which includes data from 2014 through 2026. This data includes incidents across the world, each entry representing the death of 1 or more persons, with details about the location, cause of death, time, and more, if it can be identified.
 
 In this project, the data is used to create an interactive data visualization map of the world, allowing readers to see how migrant deaths vary by location, cause of death, gender, and season. To highlight that the occurrence of these tragedies is an ongoing phenomenon, we wanted to add newer data from the most recent reports to our dataset. We achieved this by pulling Tweets from different sources of news reports on Twitter using the Twitter API. This part can be found from the Twitter page of the application.
 
@@ -48,5 +48,3 @@ After running the above command, you should see this in your terminal shell:
 And you'll be able to access the streamlit app in your browser.
 
 Here's a file I found useful of how to use various streamlit-markdown commands: [gh-file](https://github.com/shaildeliwala/experiments/blob/master/streamlit.py)
-
-test
