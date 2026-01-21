@@ -87,7 +87,7 @@ plot.update_layout(
 
 st.header("Pulling recent data from Twitter")
 
-st.markdown('*This page is in progress*')
+st.markdown('*This page is in progress, and was originally written by [Jani Kuurasuo](https://www.linkedin.com/in/jani-kuurasuo/).*')
 
 st.markdown('Reputable news accounts on Twitter often report on news relating to migrants and search-and-rescue \
 operations. In order to enrich the data we had, we wanted to access these tweets . We were able to capture tweets from a 7-day span, caught using a search matching function looking for keywords: migrant, missing, and dead. \

@@ -41,7 +41,7 @@ def plot_deaths_season(m_route, df):
     dft = df[df['Migration route'] == m_route]
 
     fig = px.line(dft, x='Incident year', y='count',
-                  color='Season', title=f"Total deaths per season in {m_route}")
+                  color='Season', title=f"Lives lost by season along {m_route}")
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
@@ -58,12 +58,12 @@ def plot_deaths_month(m_route, cause, df_wout_cause, df_wcause):
     else:
         dft = df_wout_cause[df_wout_cause['Migration route'] == m_route]
     fig = px.line(dft, x='date', y=['Total Number of Dead and Missing', 'Number of Females',
-                  'Number of Males', 'Number of Children'], title=f"Plot of deaths by month along the {m_route} route.")
+                  'Number of Males', 'Number of Children'], title=f"Lives lost by month along the {m_route} route")
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
         'xaxis_title': "",
-        'yaxis_title': "Number of deaths",
+        'yaxis_title': "Number of lives lost",
     })
     st.write(fig)
 
@@ -75,12 +75,12 @@ def plot_deaths_and_survivors_month(m_route, cause, df_wout_cause, df_wcause):
     else:
         dft = df_wout_cause[df_wout_cause['Migration route'] == m_route]
     fig = px.line(dft, x='date', y=['Total Number of Dead and Missing', 'Number of Survivors'],
-                  title=f"Plot of deaths and survivors by month along the {m_route} route.")
+                  title=f"Lives lost and survivors by month along the {m_route} route")
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
         'xaxis_title': "",
-        'yaxis_title': "Number of deaths",
+        'yaxis_title': "Number of people",
     })
     st.write(fig)
 
@@ -97,10 +97,10 @@ def plot_deaths_cause(m_route, causes, df):
             except:
                 pass
         fig = px.bar(dft, x='Cause of Death Abbreviation', y='Total Number of Dead and Missing',
-                     title=f"Causes of death in {m_route}", color=colors)
+                     title=f"Documented causes of death along {m_route}", color=colors)
     else:
         fig = px.bar(dft, x='Cause of Death Abbreviation', y='Total Number of Dead and Missing',
-                     title=f"Causes of death in {m_route}")
+                     title=f"Documented causes of death along {m_route}")
 
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
@@ -116,7 +116,7 @@ def plot_comp(m_route, cause, df):
     dft = df[(df['Migration route'].isin(m_route)) & (df['Cause of Death'].isin(
         cause))].sort_values(by='Total Number of Dead and Missing', ascending=False)
     fig = px.bar(dft, x='Cause of Death Abbreviation', y='Total Number of Dead and Missing', color='Migration route', barmode='group',
-                 title="Number of Deaths by cause of death")
+                 title="Lives lost by documented cause of death")
 
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
@@ -128,11 +128,11 @@ def plot_comp(m_route, cause, df):
 
 #  Markdown for the page
 st.header("Explore One Region at a Time")
-st.markdown("In this page we welcome you to explore the data one region at a time, using the filters in the left side menu. Try selecting a new region to check how the data visualization changes. " +
-            "Migrations often include families with children. While these journeys are dangerous, they are even moreso for children." + " For those that do survive the journey, it is often not without great difficulty and loss.")
+st.markdown("This page allows you to examine the data by specific migration route using the filters in the left sidebar. Each route tells a story of human movement across borders, often undertaken by families with children seeking better lives or fleeing danger. " +
+            "These journeys carry immense risks, particularly for the most vulnerable travelers, including children." + " For those who survive, the journey often comes at great personal cost and loss.")
 
-st.markdown("The following is a table of all included migration routes paired with the total number of recorded dead and missing people from that route, since 2014.")
-st.markdown("The data from the Missing Migrants Project includes instances in Asia that are not assigned any migration route. We have compiled these and assigned them the new value: `Routes in Asia`. In time we hope to understand these events in more detail.")
+st.markdown("The following table shows all documented migration routes and the number of lives lost or persons missing along each route since 2014. These numbers represent individuals who died pursuing safety and opportunity.")
+st.markdown("*Note: The data from the Missing Migrants Project includes incidents in Asia that were not assigned specific migration routes. We have compiled these under the designation `Routes in Asia`. Further research is needed to better understand and document these incidents.*")
 dff = df.groupby(['Migration route'])[
     ['Total Number of Dead and Missing']].sum().sort_values('Total Number of Dead and Missing', ascending=False).reset_index()
 st.dataframe(dff)
@@ -163,10 +163,10 @@ if route_input:
         df_d_s['Number of Children'].iloc[0])
 
     # introduction
-    st.markdown("For the " + route_input[0] +
-                " migration route, there are a total of  " + total_dead_missing +
-                " recorded deaths in the data since 2014. This includes " + total_women_dead_missing +
-                " women, " + total_men_dead_missing + " men, and " + total_children_dead_missing + " children.")
+    st.markdown("Along the " + route_input[0] +
+                " migration route, " + total_dead_missing +
+                " lives have been lost or persons have gone missing since 2014. This tragic toll includes " + total_women_dead_missing +
+                " women, " + total_men_dead_missing + " men, and " + total_children_dead_missing + " children—each representing someone's family member, friend, or community member.")
 
     # Country of origin
     mdf['Number of People'] = mdf.loc[:, [
@@ -176,7 +176,7 @@ if route_input:
     dforigin = mdf.groupby(['Country of Origin'])[['Number of People', 'Percentage of People from Country of Origin']].sum(
     ).sort_values('Number of People', ascending=False).reset_index()
 
-    st.markdown("The following table lists the known countries of origin for migrants traveling along this route. For each country, we see the total number of people from the country and the percentage of migrants from the country.")
+    st.markdown("The following table shows the known countries of origin for individuals who died or went missing along this route. For each country, the table displays the total number of people and the percentage of all documented individuals from that country. These figures help illustrate which populations are most affected by this particular migration route.")
     st.dataframe(dforigin)
 
     #   column statistics
@@ -195,10 +195,10 @@ if route_input:
                   prettify(df_d_s['Number of Survivors'].iloc[0]))
     col3, col4 = st.columns(2)
     with col3:
-        st.metric(f'Deadliest event date',
+        st.metric(f'Month with highest loss of life',
                   worst_month['date'].dt.strftime('%Y-%m').iloc[0])
     with col4:
-        st.metric(f'Deadliest event number of deaths',
+        st.metric(f'Lives lost in that month',
                   prettify(worst_month['Total Number of Dead and Missing'].iloc[0]))
 
 
@@ -209,9 +209,9 @@ if len(cause_of_death_input) > 0:
         cause_of_death_input)]
 
 st.markdown('\n\n\n')
-st.subheader("Maps of Death by Year, Month, and Season")
+st.subheader("Temporal Analysis: Deaths by Year, Month, and Season")
 
-st.markdown("Each of the following graphs can be expanded using the expanding arrows button that appears to the right of the graph on hover. The graphs are interactive and scalable.")
+st.markdown("The following visualizations show temporal patterns in migrant deaths and disappearances along the selected route. Each graph can be expanded using the arrows button that appears on hover. The graphs are interactive and can be zoomed or scaled for closer examination.")
 
 if route_input:
 
