@@ -87,8 +87,8 @@ if len(year_input) > 0:
         year_input)]
 else:
     statsdf = df
-df_cause_of_death = statsdf.groupby('Cause of Death Abbreviation')[['Cause of Death Abbreviation', 'Total Number of Dead and Missing']].sum(
-).sort_values('Total Number of Dead and Missing', ascending=False).reset_index()
+df_cause_of_death = statsdf.groupby('Cause of Death Abbreviation')['Total Number of Dead and Missing'].sum(
+).sort_values(ascending=False).reset_index()
 df_cause_of_death['Total Number of Dead and Missing'] = df_cause_of_death['Total Number of Dead and Missing'].apply(
     lambda x: prettify(x))
 
