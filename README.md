@@ -4,11 +4,11 @@
 
 ## About
 
-This project documents and honors the lives lost during migration worldwide. Beginning as a group project at the University of Helsinki in 2022 between [Citlali Trigos-Raczkowski](https://www.linkedin.com/in/citlali-trigos-raczkowski/) and [Sebastian Rodriguez-Beltran](https://www.linkedin.com/in/sebastian-rodriguez-beltran-1e/?originalSubdomain=fi), it has evolved into an interactive data visualization that brings awareness to the scale and ongoing nature of this humanitarian crisis.
+An interactive data visualization of migrant deaths at borders worldwide. This project started as a group project at the University of Helsinki in 2022 between [Citlali Trigos-Raczkowski](https://www.linkedin.com/in/citlali-trigos-raczkowski/) and [Sebastian Rodriguez-Beltran](https://www.linkedin.com/in/sebastian-rodriguez-beltran-1e/?originalSubdomain=fi).
 
-The project relies on data from the [Missing Migrants Project](https://missingmigrants.iom.int/), a comprehensive database tracking migrant deaths and disappearances worldwide since 2014. The dataset currently spans through 2026 and includes over 21,000 documented incidents across the globe. Each point represents one or more individuals who died while migrating, with available details about location, cause of death, time period, and circumstances.
+The visualization uses data from the [Missing Migrants Project](https://missingmigrants.iom.int/), which tracks migrant deaths and disappearances worldwide since 2014. The dataset currently includes over 21,000 documented incidents through 2026, with details about location, cause of death, time period, and circumstances when available.
 
-The interactive visualization allows you to explore how these tragedies vary by geographic region, migration route, cause of death, and time period. These figures represent minimum estimates; many deaths go unreported or undocumented. Behind each data point is a person with a story, a family grieving their loss, and a community forever changed.
+The map allows you to filter by geographic region, migration route, cause of death, and time period. These are minimum estimates as many incidents go unreported.
 
 ## Technology Stack
 
