@@ -1,5 +1,5 @@
 altair==4.2.2
 millify==0.1.1
 pandas>=1.4.3,<3.0.0
-plotly==5.10.0
+plotly>=5.18.0
 streamlit==1.13.0
