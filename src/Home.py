@@ -62,7 +62,7 @@ if len(year_input) > 0:
 # 1.0 Introduction in Main Body  *      *       *      *      *       *      *      *       *      *      *       *
 # 1.1 title and subtitle
 st.title("Visualizing Deaths of Migrants at Borders")
-st.markdown("*This work began as a group project at the University of Helsinki in 2022 alongside [Sebastian Rodriguez-Beltran](https://www.linkedin.com/in/sebastian-rodriguez-beltran-1e/?originalSubdomain=fi).*")
+st.markdown("*This work began as a group project at the University of Helsinki in 2022 between [Citlali Trigos-Raczkowski](https://www.linkedin.com/in/citlali-trigos-raczkowski/) and [Sebastian Rodriguez-Beltran](https://www.linkedin.com/in/sebastian-rodriguez-beltran-1e/?originalSubdomain=fi).*")
 st.markdown("This project seeks to document and honor the lives lost during migration. We rely on data from the [Missing Migrants Project](https://missingmigrants.iom.int/), a comprehensive database tracking migrant deaths and disappearances worldwide since 2014. The dataset currently spans through 2026 and includes over 21,000 documented incidents across the globe. Each point on our map represents one or more individuals who died while migrating, with available details about location, cause of death, time period, and circumstances.")
 st.markdown("The interactive visualization below allows you to explore how these tragedies vary by geographic region, migration route, cause of death, and time period. Use the filters in the left sidebar to focus on specific years, routes, or causes of death.")
 st.markdown("**A note on the data:** These figures represent real people—individuals who left their homes seeking safety, opportunity, or reunion with loved ones, and who lost their lives in the process. The numbers presented here are minimum estimates; many deaths go unreported or undocumented. Behind each data point is a person with a story, a family grieving their loss, and a community forever changed.")
@@ -87,7 +87,7 @@ if len(year_input) > 0:
         year_input)]
 else:
     statsdf = df
-df_cause_of_death = statsdf.groupby('Cause of Death Abbreviation')['Cause of Death Abbreviation', 'Total Number of Dead and Missing'].sum(
+df_cause_of_death = statsdf.groupby('Cause of Death Abbreviation')[['Cause of Death Abbreviation', 'Total Number of Dead and Missing']].sum(
 ).sort_values('Total Number of Dead and Missing', ascending=False).reset_index()
 df_cause_of_death['Total Number of Dead and Missing'] = df_cause_of_death['Total Number of Dead and Missing'].apply(
     lambda x: prettify(x))
