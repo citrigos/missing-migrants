@@ -1,50 +1,87 @@
 # Visualizing Deaths of Migrants at Borders
 
-Check out the [deployed application here.](https://citlali-trigos-raczkowski-migrant-data-visualiza-srchome-b0llv8.streamlitapp.com/)
+🌍 **[View Live Application](https://missing-migrants.streamlit.app/)**
 
-## Introduction
+## About
 
-This project was created to try to understand and inform others about the deaths of migrants, focused at borders. It relies on the [Missing Migrants Project](https://missingmigrants.iom.int/) dataset, which includes data from 2014 through 2026. This data includes incidents across the world, each entry representing the death of 1 or more persons, with details about the location, cause of death, time, and more, if it can be identified.
+This project documents and honors the lives lost during migration worldwide. Beginning as a group project at the University of Helsinki in 2022 between [Citlali Trigos-Raczkowski](https://www.linkedin.com/in/citlali-trigos-raczkowski/) and [Sebastian Rodriguez-Beltran](https://www.linkedin.com/in/sebastian-rodriguez-beltran-1e/?originalSubdomain=fi), it has evolved into an interactive data visualization that brings awareness to the scale and ongoing nature of this humanitarian crisis.
 
-In this project, the data is used to create an interactive data visualization map of the world, allowing readers to see how migrant deaths vary by location, cause of death, gender, and season. To highlight that the occurrence of these tragedies is an ongoing phenomenon, we wanted to add newer data from the most recent reports to our dataset. We achieved this by pulling Tweets from different sources of news reports on Twitter using the Twitter API. This part can be found from the Twitter page of the application.
+The project relies on data from the [Missing Migrants Project](https://missingmigrants.iom.int/), a comprehensive database tracking migrant deaths and disappearances worldwide since 2014. The dataset currently spans through 2026 and includes over 21,000 documented incidents across the globe. Each point represents one or more individuals who died while migrating, with available details about location, cause of death, time period, and circumstances.
 
-## Streamlit Application
+The interactive visualization allows you to explore how these tragedies vary by geographic region, migration route, cause of death, and time period. These figures represent minimum estimates; many deaths go unreported or undocumented. Behind each data point is a person with a story, a family grieving their loss, and a community forever changed.
 
-This application is built and deployed using [Streamlit.io](https://streamlit.io/). The data displayed in the application is csv data downloaded from the [Missing Migrants Project](https://missingmigrants.iom.int/) and by filtering through the [Twitter API](https://developer.twitter.com/en/docs/twitter-api).
+## Technology Stack
 
-The project is written in python, but exploratory data analysis are written in Jupyter notebooks (which can be found in the [exploration](./exploration/) folder).
+This application is built and deployed using [Streamlit](https://streamlit.io/). The project is written in Python, with exploratory data analysis documented in Jupyter notebooks (available in the [exploration](./exploration/) folder).
 
-We use the following libraries:
+### Key Libraries
 
-- [streamlit](https://streamlit.io/), the framework for the application
-- [pandas](https://pandas.pydata.org/), to explore and manipulate the CSV dataframes
-- [plotly](https://plotly.com/), to create the interactive map
-- [millify](https://www.npmjs.com/package/millify), to make the numbers readable (`1220098` --> `1,220,098`)
+- **[Streamlit](https://streamlit.io/)** - Web application framework
+- **[Pandas](https://pandas.pydata.org/)** - Data manipulation and analysis
+- **[Plotly](https://plotly.com/)** - Interactive visualizations and maps
+- **[Altair](https://altair-viz.github.io/)** - Declarative statistical visualization
+- **[millify](https://pypi.org/project/millify/)** - Number formatting (`1220098` → `1,220,098`)
 
-## Running this repo locally
+### Data Sources
 
-The above packages will all need to be installed before being able to view the application.
+- CSV data from the [Missing Migrants Project](https://missingmigrants.iom.int/)
+- Additional recent data gathered via the [Twitter API](https://developer.twitter.com/en/docs/twitter-api) (accessible through the Twitter page of the application)
 
-To start the application, run the following from the root:
+## Running Locally
 
+### Prerequisites
+
+- Python 3.10 or higher
+- pip or conda for package management
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/citrigos/missing-migrants.git
+cd missing-migrants
 ```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+Or using conda:
+```bash
+conda create -n migrant-viz python=3.10
+conda activate migrant-viz
+pip install -r requirements.txt
+```
+
+### Running the Application
+
+From the project root directory, run:
+
+```bash
 streamlit run src/Home.py
 ```
 
-If the command streamlit is not found, then you're going to need to first [set up streamlit](https://docs.streamlit.io/library/get-started/installation). I'm using a conda virtual environment
-
-After running the above command, you should see this in your terminal shell:
+The application will start and you'll see output similar to:
 
 ```
-(geo_env) ➜  scripts git:(main) ✗ streamlit run app.py
+You can now view your Streamlit app in your browser.
 
-  You can now view your Streamlit app in your browser.
-
-  Local URL: http://localhost:8501
-  Network URL: http://192.168.101.106:8501
-
+Local URL: http://localhost:8501
+Network URL: http://192.168.101.106:8501
 ```
 
-And you'll be able to access the streamlit app in your browser.
+Open the Local URL in your browser to view the application.
 
-Here's a file I found useful of how to use various streamlit-markdown commands: [gh-file](https://github.com/shaildeliwala/experiments/blob/master/streamlit.py)
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project uses data from the [Missing Migrants Project](https://missingmigrants.iom.int/) by the International Organization for Migration (IOM).
+
+## Acknowledgments
+
+- International Organization for Migration's Missing Migrants Project for providing comprehensive data
+- University of Helsinki for supporting the initial development of this project
