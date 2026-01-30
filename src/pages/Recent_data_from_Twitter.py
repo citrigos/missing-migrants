@@ -22,21 +22,20 @@ def plot_deaths_month(route, df):
     )
 
     fig.update_xaxes(range=['2022-08-01', '2022-11-01'])
-    fig.update_traces(width=100000000)
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
         'xaxis_title': "Date",
         'yaxis_title': "Number of Deaths/Missing"
     })
-    st.write(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def tweet_embed(tweet_url):
     link = f'https://publish.twitter.com/oembed?url={tweet_url}'
     resp = requests.get(link)
     rjs = resp.json()['html']
-    return components.html(rjs, height=700)
+    return components.html(rjs, height=500, scrolling=True)
 
 
 tweet_df['date'] = pd.to_datetime(tweet_df['date'])
@@ -68,7 +67,7 @@ plot = px.scatter_geo(
 )
 
 plot.update_layout(
-    autosize=False,
+    autosize=True,
     geo=dict(
         scope='world',
         showcountries=True,
@@ -112,7 +111,7 @@ Mediterranean routes report the most incidents, and can also be partly because t
 reports on search-and-rescue operations in the Mediterranean.')
 
 st.markdown('Below is a map of these incidents pulled from Twitter.')
-st.plotly_chart(plot)
+st.plotly_chart(plot, use_container_width=True)
 
 st.markdown('Each incident plotted in the below graph shows the number of people dead or missing. You can filter this data using the migration route filter in the left side menu.')
 

@@ -47,7 +47,7 @@ def plot_deaths_season(m_route, df):
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
         'xaxis_title': "",
     })
-    st.write(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def plot_deaths_month(m_route, cause, df_wout_cause, df_wcause):
@@ -65,7 +65,7 @@ def plot_deaths_month(m_route, cause, df_wout_cause, df_wcause):
         'xaxis_title': "",
         'yaxis_title': "Number of lives lost",
     })
-    st.write(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def plot_deaths_and_survivors_month(m_route, cause, df_wout_cause, df_wcause):
@@ -82,7 +82,7 @@ def plot_deaths_and_survivors_month(m_route, cause, df_wout_cause, df_wcause):
         'xaxis_title': "",
         'yaxis_title': "Number of people",
     })
-    st.write(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def plot_deaths_cause(m_route, causes, df):
@@ -109,7 +109,7 @@ def plot_deaths_cause(m_route, causes, df):
     })
     st.markdown(
         "Selecting a cause of death from the left side menu will modify the below plot(s).")
-    st.write(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def plot_comp(m_route, cause, df):
@@ -123,7 +123,7 @@ def plot_comp(m_route, cause, df):
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
     })
 
-    st.write(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 #  Markdown for the page
@@ -181,24 +181,30 @@ if route_input:
 
     #   column statistics
     st.subheader("View the Statistics")
-    col1, col2 = st.columns(2)
-    cause1 = migrantdf['Cause of Death'].iloc[0]
-    st.metric(f'Most common cause of death', cause1)
-    cause2 = migrantdf['Cause of Death'].iloc[1]
-    st.metric(f'Second most common cause of death', cause2)
 
+    cause1 = migrantdf['Cause of Death'].iloc[0]
+    cause2 = migrantdf['Cause of Death'].iloc[1]
+
+    col1, col2 = st.columns(2)
     with col1:
-        st.metric(f'Total number of Recorded Dead and Missing since 2014',
-                  total_dead_missing)
+        st.metric('Most common cause of death', cause1)
     with col2:
-        st.metric(f'Number of Recorded Survivors',
-                  prettify(df_d_s['Number of Survivors'].iloc[0]))
+        st.metric('Second most common cause of death', cause2)
+
     col3, col4 = st.columns(2)
     with col3:
-        st.metric(f'Month with highest loss of life',
-                  worst_month['date'].dt.strftime('%Y-%m').iloc[0])
+        st.metric('Total number of Recorded Dead and Missing since 2014',
+                  total_dead_missing)
     with col4:
-        st.metric(f'Lives lost in that month',
+        st.metric('Number of Recorded Survivors',
+                  prettify(df_d_s['Number of Survivors'].iloc[0]))
+
+    col5, col6 = st.columns(2)
+    with col5:
+        st.metric('Month with highest loss of life',
+                  worst_month['date'].dt.strftime('%Y-%m').iloc[0])
+    with col6:
+        st.metric('Lives lost in that month',
                   prettify(worst_month['Total Number of Dead and Missing'].iloc[0]))
 
 

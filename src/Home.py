@@ -120,9 +120,7 @@ fig = go.Figure(data=go.Scattergeo(
 
 fig.update_layout(
     title='Locations of the Reports',
-    autosize=False,
-    # width=750,
-    # height=400,
+    autosize=True,
     geo=dict(
         scope='world',
         showcountries=True,
@@ -154,9 +152,7 @@ plot = px.scatter_geo(plotdf, lat='lat', lon='lon',
 
 plot.update_layout(
     title='Locations of the Reports',
-    autosize=False,
-    # width=750,
-    # height=400,
+    autosize=True,
     geo=dict(
         scope='world',
         showcountries=True,
@@ -171,7 +167,7 @@ plot.update_layout(
 st.header("Explore the World Map")
 st.markdown("When you hover over the graph with your mouse, you'll see additional data appear. Each dot on the graph marks a single incident, and the tooltip for that dot gives data on: (1) Cause of Death, (2) How many total people died or went missing for the incident, and (3) Which year the incident occured in.")
 st.markdown("The map can be made full-screen. When you hover over the map, a menu should appear above it. The right-most arrows, when selected, will make the map full screen.")
-st.plotly_chart(plot)
+st.plotly_chart(plot, use_container_width=True)
 
 #  1.4 Explore tabular data
 st.header("Explore the Tabular Data")
